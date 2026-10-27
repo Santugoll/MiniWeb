@@ -8,11 +8,15 @@ db.init_app(app)
 
 # Registrando el blueprint del controlador de usuarios
 app.register_blueprint(user_controller)
-
+from products.controllers.product_controller import product_controller
+app.register_blueprint(product_controller)
 # Ruta para renderizar el template index.html
 @app.route('/')
 def index():
     return render_template('index.html')
+@app.route('/productos')
+def productos():
+    return render_template('productos.html')
 
 @app.route('/edit/<string:id>')
 def edit_user(id):
